@@ -100,6 +100,9 @@ spec:
           env:
           {{- include "custom_airflow_environment" . | indent 10 }}
           {{- include "standard_airflow_environment" . | indent 10 }}
+        {{- if .Values.dags.gitSync.enabled }}
+        {{- include "git_sync_scheduler_init_container" . | indent 8 }}
+        {{- end }}
       containers:
         # Always run the main scheduler container.
         - name: scheduler
