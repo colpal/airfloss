@@ -462,7 +462,7 @@ class SparkSubmitHook(BaseHook, LoggingMixin):
                                   self._kubernetes_driver_pod)
 
                 # Store the Spark Exit code
-                match_exit_code = re.search(r'\s*Exit code: (\d+)', line)
+                match_exit_code = re.search(r'\s*[eE]xit code: (\d+)', line)
                 if match_exit_code:
                     self._spark_exit_code = int(match_exit_code.groups()[0])
 
