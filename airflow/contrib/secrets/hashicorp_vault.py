@@ -189,8 +189,12 @@ class VaultBackend(BaseSecretsBackend, LoggingMixin):
         :param key: Variable Key
         :return: Variable Value
         """
-        response = self._get_secret(self.variables_path, key)
-        return response.get("value") if response else None
+        
+        if self.variables_path == None:
+            return None
+        else:
+            response = self._get_secret(self.variables_path, key)
+            return response.get("value") if response else None
 
     def _get_secret(self, path_prefix, secret_id):
         # type: (str, str) -> Optional[dict]
