@@ -110,7 +110,10 @@ class VaultBackend(BaseSecretsBackend, LoggingMixin):
     ):
         super(VaultBackend, self).__init__()
         self.connections_path = connections_path.rstrip('/')
-        self.variables_path = variables_path.rstrip('/')
+        if variables_path != None:
+            self.variables_path = variables_path.rstrip('/')
+        else:
+            self.variables_path = variables_path
         self.config_path = config_path.rstrip('/')
         self.url = url
         self.auth_type = auth_type
